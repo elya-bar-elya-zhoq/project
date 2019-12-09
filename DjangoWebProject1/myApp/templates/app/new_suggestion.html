@@ -1,0 +1,21 @@
+﻿{% extends "app/layout.html" %}
+
+{% block title %}
+
+    <h2>{{title}}</h2>
+
+{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'new_suggestion' %}" method="post">
+
+    {% csrf_token %}
+
+    <input type="text" required placeholder="Topic" name="topic" /><br />
+    <textarea name="new_text" required="" placeholder="Your suggestion" cols="60" rows="30"></textarea> <br />
+
+    <button type="submit" onclick="SaveSuggestion()">Post your suggestion</button>
+</form>
+
+{% endblock %}

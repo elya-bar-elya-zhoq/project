@@ -1,0 +1,19 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+<h4>{{ message }}</h4>
+
+<address>
+    Some address<br />
+    <abbr title="Phone">P:</abbr>
+    some phone
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+</address>
+
+{% endblock %}

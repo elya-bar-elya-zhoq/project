@@ -1,0 +1,27 @@
+﻿{% extends "app/layout.html" %}
+
+{% block title %}
+<div class="jumbotron">
+    <h2>Suggestions</h2>
+    <p class="lead">
+        Bring your suggestions here!
+    </p>
+    {% if user.is_authenticated %}
+        <p><a class="btn btn-default" href="{% url 'new_suggestion' %}">Create a suggestion &raquo;</a></p>
+    {% else %}
+        <p> You can't make a suggestion. Log in!</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block content %}
+
+
+    {% for a in suggestions_list %}
+
+        
+        <a href="{% url 'detail' a.id %}" class="btn btn-primary btn-lg btn-block">{{a.suggestion_title}} &raquo;</a></p>
+    {% endfor %}
+
+
+{% endblock %}
