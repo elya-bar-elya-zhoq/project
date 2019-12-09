@@ -15,23 +15,31 @@
 
 {% block content %}
 <div class="lead">
-    <div class="col-md-4">
-        <h2>First news</h2>
-        <p>
-            Some short descryption.
-        </p>
-        <p><a class="btn btn-default" href="/">Read more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Second news</h2>
-        <p>Some short descryption.</p>
-        <p><a class="btn btn-default" href="/">Read more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Third news</h2>
-        <p>Some short descryption.</p>
-        <p><a class="btn btn-default" href="/">Read more &raquo;</a></p>
-    </div>
+    {% if latest_news %}
+<!-- thymeleaf -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">News
+                    <small color="red">LATEST</small>
+                </h1>
+            </div>
+        </div>
+        {% for news in latest_news %}
+            <div class="row">
+                <div class="col-md-3 portfolio-item">
+                <div class="col-md-4">
+                <h2><a href="{% url 'myApp:news' %}">{{news.news_name}}</a></h2>
+                <p>
+                    <p>{{news.news_text|truncatewords:10}}</p>
+                </p>
+                <p><a class="btn btn-default" href="/">Read more &raquo;</a></p>
+                </div>
+            </div>
+    {% endfor %}
+{% else %}
+      <p> "No available news" </p>
+{% endif %}
+
 </div>
 
 {% endblock %}

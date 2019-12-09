@@ -5,17 +5,19 @@ Definition of views.
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
-from .models import Suggestion, Comment
+from .models import Suggestion, Comment, News
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    latest_news = News.objects.order_by('-news_date')[:4]
     return render(
         request,
         'app/index.html',
         {
+            'latest_news':latest_news,
             'title':'Home Page',
             'year':datetime.now().year,
         }
@@ -49,7 +51,7 @@ def about(request):
     )
 
 
-def index(request):
+def indexS(request):
     suggestions_list = Suggestion.objects.all().order_by('-pub_date')
     return render(
         request, 
@@ -98,7 +100,15 @@ def detail(request, suggestion_id):
             'year':datetime.now().year,  
         }
     )
-    
+
+def news(request):
+    """Using get_object_or_404() shortcut to return PNF 404"""
+    nw = get_object_or_404(News)
+    nw.save()
+    return render(reverse("app/index.html"), 
+                  {
+                      "news":nw
+                      })
 
 def leave_comment(request, suggestion_id):
     try:

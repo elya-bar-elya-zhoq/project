@@ -50,3 +50,11 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+class News(models.Model):
+	news_name = models.CharField(max_length = 1000)
+	news_text = models.TextField(default="")
+	news_date = models.DateTimeField('Дата публикации')
+
+	def __str__(self):
+		return self.news_name

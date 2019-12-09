@@ -26,8 +26,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'index' %}">Suggestions</a></li>
+                    <li><a href="{% url 'myApp:home' %}">Home</a></li>
+                    <li><a href="{% url 'indexS' %}">Suggestions</a></li>
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
@@ -40,7 +40,7 @@
         {% block content %}{% endblock %}
         <hr />
         <footer>
-            <p>&copy; {{ year }} - The District Project</p>
+            <p>{{ year }} &copy; - The District Project</p>
         </footer>
     </div>
 
